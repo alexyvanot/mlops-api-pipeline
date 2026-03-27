@@ -11,6 +11,16 @@ def test_health() -> None:
     assert response.json() == {"status": "ok"}
 
 
+def test_version() -> None:
+    response = client.get("/version")
+    assert response.status_code == 200
+    body = response.json()
+    assert set(body.keys()) == {"app_version", "git_commit", "git_branch"}
+    assert isinstance(body["app_version"], str)
+    assert isinstance(body["git_commit"], str)
+    assert isinstance(body["git_branch"], str)
+
+
 def test_predict_and_metrics() -> None:
     payload = {
         "sepal_length": 5.1,

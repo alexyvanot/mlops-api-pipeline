@@ -21,3 +21,9 @@ class HealthResponse(BaseModel):
 class MetricsResponse(BaseModel):
     total_requests: int
     total_predictions: int
+
+
+class VersionResponse(BaseModel):
+    app_version: str
+    git_commit: str
+    git_branch: str

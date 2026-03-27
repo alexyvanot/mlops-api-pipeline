@@ -52,6 +52,7 @@ uvicorn mlops_api.main:app --app-dir apps/api --host 0.0.0.0 --port 8000
 
 Endpoints:
 - `GET /health`
+- `GET /version`
 - `POST /predict`
 - `GET /metrics`
 
@@ -108,4 +109,10 @@ docker compose up --build
 The GitHub Actions workflow (`.github/workflows/ci.yml`) runs:
 - dependency installation
 - test execution
+- model training and upload as GitHub artifact (`trained-model`)
 - Docker image build
+- Docker image push to GHCR on pushes to `main`
+
+Published Docker image tags:
+- `ghcr.io/<owner>/mlops-api-pipeline:latest`
+- `ghcr.io/<owner>/mlops-api-pipeline:<commit-sha>`

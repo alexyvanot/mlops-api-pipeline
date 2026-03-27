@@ -4,21 +4,35 @@ from fastapi import APIRouter, Depends
 
 from mlops_api.api.dependencies import get_monitoring, get_predictor
 from mlops_api.core.monitoring import MonitoringStore
+from mlops_api.core.settings import ApiSettings
+from mlops_api.core.version import get_version_info
 from mlops_api.schemas.prediction import (
     HealthResponse,
     MetricsResponse,
     PredictionRequest,
     PredictionResponse,
+    VersionResponse,
 )
 from mlops_api.services.predictor import PredictorService
 
 router = APIRouter()
 logger = logging.getLogger("mlops_api")
+settings = ApiSettings()
 
 
 @router.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     return HealthResponse(status="ok")
+
+
+@router.get("/version", response_model=VersionResponse)
+def version() -> VersionResponse:
+    info = get_version_info(settings.app_version)
+    return VersionResponse(
+        app_version=info.app_version,
+        git_commit=info.git_commit,
+        git_branch=info.git_branch,
+    )
 
 
 @router.get("/metrics", response_model=MetricsResponse)
