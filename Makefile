@@ -14,7 +14,7 @@ train:
 	$(VENV_DIR)/Scripts/python scripts/train.py
 
 run:
-	$(VENV_DIR)/Scripts/uvicorn mlops_api.main:app --app-dir apps/api --host 0.0.0.0 --port 8000
+	$(VENV_DIR)/Scripts/python scripts/run_api.py
 
 test:
 	$(VENV_DIR)/Scripts/pytest

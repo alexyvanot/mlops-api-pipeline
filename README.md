@@ -47,7 +47,13 @@ The model is stored in `artifacts/model.pkl`.
 ## Run the API
 
 ```bash
-uvicorn mlops_api.main:app --app-dir apps/api --host 0.0.0.0 --port 8000
+python scripts/run_api.py
+```
+
+Alternative command:
+
+```bash
+PYTHONPATH=. uvicorn mlops_api.main:app --app-dir apps/api --host 0.0.0.0 --port 8000
 ```
 
 Endpoints:
