@@ -13,4 +13,5 @@ artifacts/*.pkl
 mlruns/
 .DS_Store
 .idea/
-.vscode/
+.vscode/*
+!.vscode/settings.json
