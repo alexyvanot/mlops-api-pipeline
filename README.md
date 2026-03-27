@@ -113,6 +113,23 @@ The GitHub Actions workflow (`.github/workflows/ci.yml`) runs:
 - Docker image build
 - Docker image push to GHCR on pushes to `main`
 
+## Releases
+
+On tag push (for example `v1.0.0`), the release workflow (`.github/workflows/release.yml`) will:
+- train the model
+- create a checksum file
+- create/update the GitHub Release
+- upload release assets:
+  - `artifacts/model.pkl`
+  - `artifacts/model.pkl.sha256`
+
+Create a release tag:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 Published Docker image tags:
 - `ghcr.io/<owner>/mlops-api-pipeline:latest`
 - `ghcr.io/<owner>/mlops-api-pipeline:<commit-sha>`
