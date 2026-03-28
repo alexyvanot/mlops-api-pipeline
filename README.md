@@ -1,6 +1,7 @@
 # mlops-api-pipeline
 
 Python monorepo for a DevOps/MLOps mini-project with:
+
 - MLOps pipeline (scikit-learn training + `.pkl` artifact + MLflow tracking)
 - FastAPI REST API with Swagger UI
 - minimal monitoring (logs + counters)
@@ -57,12 +58,14 @@ PYTHONPATH=. uvicorn mlops_api.main:app --app-dir apps/api --host 0.0.0.0 --port
 ```
 
 Endpoints:
+
 - `GET /health`
 - `GET /version`
 - `POST /predict`
 - `GET /metrics`
 
 Swagger UI:
+
 - `http://localhost:8000/docs`
 
 Example `POST /predict` payload:
@@ -113,6 +116,7 @@ docker compose up --build
 ## CI/CD
 
 The GitHub Actions workflow (`.github/workflows/ci.yml`) runs:
+
 - dependency installation
 - test execution
 - model training and upload as GitHub artifact (`trained-model`)
@@ -122,6 +126,7 @@ The GitHub Actions workflow (`.github/workflows/ci.yml`) runs:
 ## Releases
 
 On tag push (for example `v1.0.0`), the release workflow (`.github/workflows/release.yml`) will:
+
 - train the model
 - create a checksum file
 - create/update the GitHub Release
@@ -137,5 +142,6 @@ git push origin v1.0.0
 ```
 
 Published Docker image tags:
+
 - `ghcr.io/<owner>/mlops-api-pipeline:latest`
 - `ghcr.io/<owner>/mlops-api-pipeline:<commit-sha>`
